@@ -1,5 +1,7 @@
 import { motion } from "framer-motion";
-import { Bed, Bath, Maximize, ArrowRight } from "lucide-react";
+import { ArrowRight } from "lucide-react";
+import { Link } from "react-router-dom";
+import PropertyCard from "./PropertyCard";
 import property1 from "@/assets/property-1.jpg";
 import property2 from "@/assets/property-2.jpg";
 import property3 from "@/assets/property-3.jpg";
@@ -15,6 +17,8 @@ const properties = [
     baths: 5,
     sqft: "6,200",
     tag: "Featured",
+    tagVariant: "gold" as const,
+    slug: "skyline-penthouse",
   },
   {
     image: property2,
@@ -25,6 +29,8 @@ const properties = [
     baths: 7,
     sqft: "12,400",
     tag: "Exclusive",
+    tagVariant: "navy" as const,
+    slug: "marina-waterfront-villa",
   },
   {
     image: property3,
@@ -35,6 +41,8 @@ const properties = [
     baths: 4,
     sqft: "3,800",
     tag: "New",
+    tagVariant: "green" as const,
+    slug: "boulevard-residence",
   },
   {
     image: property4,
@@ -45,93 +53,63 @@ const properties = [
     baths: 9,
     sqft: "18,000",
     tag: "Premium",
+    tagVariant: "gold" as const,
+    slug: "palm-beach-estate",
   },
 ];
 
 const FeaturedProperties = () => {
   return (
-    <section id="listings" className="py-20 md:py-28 bg-background">
-      <div className="container mx-auto px-6">
+    <section id="listings" className="section bg-background">
+      <div className="container-wide">
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          transition={{ duration: 0.8 }}
-          className="flex items-end justify-between mb-12"
+          transition={{ duration: 0.7 }}
+          className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-12"
         >
           <div>
-            <p className="font-body text-xs tracking-[0.3em] uppercase text-primary mb-3">
-              Featured Listings
-            </p>
+            <p className="section-label mb-3">Featured Listings</p>
             <h2 className="font-display text-3xl md:text-5xl font-bold text-foreground">
               Premium Properties
             </h2>
+            <div className="divider mt-4" />
           </div>
-          <a
-            href="#"
-            className="hidden md:flex items-center gap-2 font-body text-sm text-primary hover:text-accent transition-colors group"
+          <Link
+            to="/properties"
+            className="inline-flex items-center gap-2 font-body text-sm text-primary hover:text-accent transition-colors group"
           >
-            View All
-            <ArrowRight size={16} className="group-hover:translate-x-1 transition-transform" />
-          </a>
+            View All Properties
+            <ArrowRight size={15} className="group-hover:translate-x-1 transition-transform" />
+          </Link>
         </motion.div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6 lg:gap-8">
           {properties.map((prop, i) => (
-            <motion.article
+            <motion.div
               key={prop.title}
               initial={{ opacity: 0, y: 40 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.6, delay: i * 0.1 }}
-              className="group rounded-lg overflow-hidden bg-card border border-border hover-lift cursor-pointer"
             >
-              <div className="relative aspect-[4/3] overflow-hidden">
-                <img
-                  src={prop.image}
-                  alt={prop.title}
-                  loading="lazy"
-                  width={800}
-                  height={600}
-                  className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
-                />
-                <div className="absolute top-4 left-4">
-                  <span className="inline-block px-3 py-1 bg-primary text-primary-foreground font-body text-[10px] tracking-widest uppercase rounded-sm">
-                    {prop.tag}
-                  </span>
-                </div>
-              </div>
-
-              <div className="p-5 md:p-6">
-                <div className="flex items-start justify-between mb-2">
-                  <div>
-                    <h3 className="font-display text-xl font-semibold text-foreground group-hover:text-primary transition-colors">
-                      {prop.title}
-                    </h3>
-                    <p className="font-body text-xs tracking-wider text-muted-foreground mt-1">
-                      {prop.location}
-                    </p>
-                  </div>
-                  <p className="font-body text-sm font-semibold text-primary">
-                    {prop.price}
-                  </p>
-                </div>
-
-                <div className="flex items-center gap-5 pt-4 mt-4 border-t border-border">
-                  <span className="flex items-center gap-1.5 text-xs text-muted-foreground font-body">
-                    <Bed size={14} className="text-primary/60" /> {prop.beds} Beds
-                  </span>
-                  <span className="flex items-center gap-1.5 text-xs text-muted-foreground font-body">
-                    <Bath size={14} className="text-primary/60" /> {prop.baths} Baths
-                  </span>
-                  <span className="flex items-center gap-1.5 text-xs text-muted-foreground font-body">
-                    <Maximize size={14} className="text-primary/60" /> {prop.sqft} sqft
-                  </span>
-                </div>
-              </div>
-            </motion.article>
+              <PropertyCard {...prop} />
+            </motion.div>
           ))}
         </div>
+
+        <motion.div
+          initial={{ opacity: 0 }}
+          whileInView={{ opacity: 1 }}
+          viewport={{ once: true }}
+          transition={{ delay: 0.4 }}
+          className="text-center mt-12"
+        >
+          <Link to="/properties" className="btn-outline">
+            Browse All Listings
+          </Link>
+        </motion.div>
       </div>
     </section>
   );

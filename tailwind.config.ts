@@ -16,6 +16,7 @@ export default {
       fontFamily: {
         display: ["var(--font-display)"],
         body: ["var(--font-body)"],
+        hero: ["var(--font-hero)"],
       },
       colors: {
         border: "hsl(var(--border))",
@@ -125,6 +126,13 @@ export default {
         shimmer: "shimmer 3s infinite linear",
         float: "float 6s ease-in-out infinite",
         "lens-rotate": "lens-rotate 20s linear infinite",
+      },
+      scale: {
+        "102": "1.02",
+        "103": "1.03",
+        "105": "1.05",
+        "106": "1.06",
+        "108": "1.08",
       },
     },
   },
