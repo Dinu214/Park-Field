@@ -26,22 +26,19 @@ const steps = [
 
 const JourneySection = () => {
   return (
-    <section id="journey" className="py-24 md:py-32 relative overflow-hidden">
-      {/* Subtle background gradient */}
-      <div className="absolute inset-0 bg-gradient-to-b from-background via-secondary/30 to-background" />
-
-      <div className="container mx-auto px-6 relative z-10">
+    <section id="journey" className="py-20 md:py-28 bg-secondary/40">
+      <div className="container mx-auto px-6">
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          className="text-center mb-20"
+          className="text-center mb-16"
         >
-          <p className="font-body text-xs tracking-[0.4em] uppercase text-primary mb-4">
+          <p className="font-body text-xs tracking-[0.3em] uppercase text-primary mb-3">
             How It Works
           </p>
-          <h2 className="font-display text-4xl md:text-5xl font-bold text-foreground">
-            The Journey
+          <h2 className="font-display text-3xl md:text-5xl font-bold text-foreground">
+            Your Journey With Us
           </h2>
         </motion.div>
 
@@ -52,10 +49,10 @@ const JourneySection = () => {
               initial={{ opacity: 0, y: 40 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              transition={{ delay: i * 0.15, duration: 0.6 }}
+              transition={{ delay: i * 0.12, duration: 0.6 }}
               className="relative text-center group"
             >
-              <div className="w-16 h-16 mx-auto mb-6 rounded-full glass-panel gold-border flex items-center justify-center group-hover:gold-glow transition-all duration-500">
+              <div className="w-16 h-16 mx-auto mb-6 rounded-full bg-primary/10 border border-primary/20 flex items-center justify-center group-hover:bg-primary/20 transition-all duration-500">
                 <step.icon size={24} className="text-primary" />
               </div>
               <span className="absolute top-0 right-1/2 translate-x-1/2 -translate-y-2 font-display text-6xl font-bold text-primary/5">
